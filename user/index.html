@@ -45,7 +45,7 @@
             const deepLink = `justpe://referral?refcode=${refCode}`;
 
             // Build proper Android Intent
-            const intentUrl = `intent://justpe.in/referral#Intent;` +
+            const intentUrl = `intent://www.justref.justpe.in/user?refcode=RULQB074#Intent;` +
                 `scheme=justpe;` +
                 `package=${packageName};` +
                 `action=android.intent.action.VIEW;` +
@@ -69,9 +69,9 @@
             }
 
             if (isAndroid) {
-                redirectToStore();
+                //redirectToStore();
                 // First try to open app directly
-                ///window.location = deepLink;
+                window.location = intentUrl;
                 
                 // If app not installed, try Play Store app
                 setTimeout(() => {
