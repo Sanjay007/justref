@@ -47,7 +47,7 @@ function getQueryParam(paramName) {
 var token=getQueryParam("refcode");
 console.log(token)
 var androidIntentUrl="intent://www.justref.justpe.in/user"+window.location.search+"#Intent;scheme=http;package=com.aeps.justpe.business;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails?id=com.app.justpe.payments&distributor="+token+window.location.search+";end";
-
+console.log(androidIntentUrl);
 var isMobile={
 Windows:function(){
 return/IEMobile|Windows Phone|Lumia/i.test(navigator.userAgent);
