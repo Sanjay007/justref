@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.app.justpe.payments",
+      "sha256_cert_fingerprints": [
+        "DE:7B:DE:86:12:C2:F3:34:20:A0:A1:2A:E3:EA:2C:4D:5C:6C:C8:B0:4C:1B:EF:10:B4:CD:01:9C:A5:B5:31:E4"
+      ]
+    }
+  }
+]
