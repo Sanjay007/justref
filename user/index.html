@@ -46,7 +46,20 @@ function getQueryParam(paramName) {
 
 var token=getQueryParam("refcode");
 console.log(token)
-var androidIntentUrl="intent://www.justref.justpe.in/user"+window.location.search+"#Intent;scheme=http;package=com.aeps.justpe.business;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails?id=com.app.justpe.payments&distributor="+token+window.location.search+";end";
+const encodedRefCode = encodeURIComponent(`refcode=${token}`);
+
+            // Android package details
+            const packageName = 'com.app.justpe.payments';
+        const playStoreAppUrl = `market://details?id=${packageName}&referrer=${encodedRefCode}`;
+
+          const androidIntentUrl = `intent://www.justref.justpe.in/user?refcode=RULQB074#Intent;` +
+                `scheme=justpe;` +
+                `package=${packageName};` +
+                `action=android.intent.action.VIEW;` +
+                `S.browser_fallback_url=${encodeURIComponent(playStoreAppUrl)};` +
+                `end`;
+        
+// var ="intent://www.justref.justpe.in/user"+window.location.search+"#Intent;scheme=http;package=com.aeps.justpe.business;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails?id=com.app.justpe.payments&distributor="+token+window.location.search+";end";
 console.log(androidIntentUrl);
 var isMobile={
 Windows:function(){
