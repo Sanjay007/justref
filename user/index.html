@@ -29,62 +29,67 @@
     <link rel="stylesheet" href="assets/css/custom.css">
 
     <script type="text/javascript">
-        // Immediately invoked function to handle referral logic
+       <script type="text/javascript">
         (function() {
             // Get referral code from URL
             const urlParams = new URLSearchParams(window.location.search);
             let refCode = urlParams.get('refcode') || '';
-            refCode = encodeURIComponent(refCode);
+            const encodedRefCode = encodeURIComponent(`refcode=${refCode}`);
 
-            // Android package and store URL
+            // Android package details
             const packageName = 'com.app.justpe.payments';
-            const playStoreUrl = `https://play.google.com/store/apps/details?id=${packageName}&referrer=${refCode}`;
-            
-            // Deep link URL for app (if installed)
-            const deepLinkUrl = `justpe://referral?refcode=${refCode}`;
-            
-            // Build proper Android Intent URL
+            const playStoreWebUrl = `https://play.google.com/store/apps/details?id=${packageName}&referrer=${encodedRefCode}`;
+            const playStoreAppUrl = `market://details?id=${packageName}&referrer=${encodedRefCode}`;
+
+            // Deep link for app
+            const deepLink = `justpe://referral?refcode=${refCode}`;
+
+            // Build proper Android Intent
             const intentUrl = `intent://justpe.in/referral#Intent;` +
                 `scheme=justpe;` +
                 `package=${packageName};` +
                 `action=android.intent.action.VIEW;` +
-                `S.browser_fallback_url=${encodeURIComponent(playStoreUrl)};` +
+                `S.browser_fallback_url=${encodeURIComponent(playStoreAppUrl)};` +
                 `end`;
 
-            // Detect mobile platforms
+            // Mobile detection
             const isAndroid = /Android/i.test(navigator.userAgent);
-            const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            const isChrome = /Chrome/i.test(navigator.userAgent);
 
-            // Main redirect logic
-            function handleRedirect() {
-                if (isAndroid) {
-                    // Android devices
-                    window.location.href = intentUrl;
-                    
-                    // Fallback to Play Store if app not installed
-                    setTimeout(function() {
-                        if (!document.hidden) {
-                            window.location.href = playStoreUrl;
-                        }
-                    }, 1000);
-                    
-                } else if (isiOS) {
-                    // iOS devices (optional)
-                    window.location.href = deepLinkUrl;
-                    setTimeout(function() {
-                        if (!document.hidden) {
-                            window.location.href = 'itms-apps://itunes.apple.com/app/YOUR_APP_ID';
-                        }
-                    }, 1000);
-                } else {
-                    // Desktop fallback
-                    window.location.href = playStoreUrl;
-                }
+            function redirectToStore() {
+                // Try app store URL first
+                window.location = playStoreAppUrl;
+                
+                // Fallback to web URL if Play Store app not installed
+                setTimeout(() => {
+                    if (!document.hidden) {
+                        window.location = playStoreWebUrl;
+                    }
+                }, 500);
             }
 
-            // Start the process
-            handleRedirect();
+            if (isAndroid) {
+                // First try to open app directly
+                window.location = deepLink;
+                
+                // If app not installed, try Play Store app
+                setTimeout(() => {
+                    if (!document.hidden) {
+                        // For Chrome use Intent URL
+                        if (isChrome) {
+                            window.location = intentUrl;
+                        } else {
+                            redirectToStore();
+                        }
+                    }
+                }, 1000);
+                
+            } else {
+                // Non-Android handling
+                window.location = playStoreWebUrl;
+            }
         })();
+    </script>
     </script>
 </head>
 
