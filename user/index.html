@@ -4,11 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>JustPE Referral - Distributor </title>
+    <title>JustPe Payments - Referral </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" href="assets/images/favicon.png">
     <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+
+<meta property="og:title" content="Join JustPe - Get Minimum Cashback On Every Transaction">
+<meta property="og:description" content="Start your digital payments journey with JustPe and earn upto ₹5 on every Recharge using my referral link!">
+<meta property="og:image" content="https://justpe.in/wp-content/uploads/2024/04/Just-2.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JustPe Payments">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 
     <!-- Google Font (font-family: 'Roboto', sans-serif;) -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700" rel="stylesheet">
@@ -46,21 +56,17 @@ function getQueryParam(paramName) {
 
 var token=getQueryParam("refcode");
 console.log(token)
-const encodedRefCode = encodeURIComponent(`refcode=${token}`);
 
-            // Android package details
-            const packageName = 'com.app.justpe.payments';
-        const playStoreAppUrl = `https://play.google.com/store/apps/details?id=${packageName}&referrer=${encodedRefCode}`;
+// var androidIntentUrl="intent://www.justref.justpe.in/user"+window.location.search+"#Intent;scheme=https;package=com.app.justpe.payments;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails?id=com.app.justpe.payments&refcode="+token+";end";
 
-          const androidIntentUrl = `intent://www.justref.justpe.in/user?refcode=RULQB074#Intent;` +
-                `scheme=justpe;` +
-                `package=${packageName};` +
-                `action=android.intent.action.VIEW;` +
-                `S.browser_fallback_url=${encodeURIComponent(playStoreAppUrl)};` +
-                `end`;
-        
-// var ="intent://www.justref.justpe.in/user"+window.location.search+"#Intent;scheme=http;package=com.aeps.justpe.business;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails?id=com.app.justpe.payments&distributor="+token+window.location.search+";end";
+
+var androidIntentUrl="intent://www.referral.justpe.in/justpebusiness"+window.location.search+"#Intent;scheme=https;package=com.aeps.justpe.business;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.app.justpe.payments%26referrer%3Dhttps%3A%2F%2Fjustref.justpe.in%2Fuser%3Frefcode%3DANPBAU16;end";
+
+
+//var androidIntentUrl="https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.app.justpe.payments%26referrer%3Dhttps%3A%2F%2Fjustref.justpe.in%2Fuser%3Frefcode%3DANPBAU15";
+
 console.log(androidIntentUrl);
+
 var isMobile={
 Windows:function(){
 return/IEMobile|Windows Phone|Lumia/i.test(navigator.userAgent);
@@ -76,7 +82,10 @@ return/iPhone/i.test(navigator.userAgent);
 // Windows return both android and iPhone in it's identity, need to check first.
 if(!isMobile.Windows()){
 if(isMobile.Android()){
-window.location=androidIntentUrl;
+// window.location=androidIntentUrl;
+window.location.replace('https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.app.justpe.payments%26referrer%3Dhttps%3A%2F%2Fjustref.justpe.in%2Fuser%3Frefcode%3DANPBAU16');
+
+
 }
 
 if(isMobile.iPhone()){
@@ -104,17 +113,21 @@ if(isMobile.iPhone()){
         <div class="tm-header tm-header-fixed tm-sticky-header">
             <div class="container">
                 <div class="row align-items-center">
+                    
+                    
                     <div class="col-lg-3 col-md-9 col-9">
-                       
-                    </div>
-                    <div class="col-lg-9 col-md-3 col-3">
-                        <nav class="tm-navigation tm-header-navigation">
-                            <ul>
-                                <li class="current"><a href="#tm-area-heroslider">Home</a></li>
-                               
-                            </ul>
-                        </nav>
-                    </div>
+    <a href="index.html" class="tm-header-logo">
+        <img src="assets/images/logo.png" alt="JustPE Logo" style="max-height: 50px; width: auto;">
+    </a>
+</div>
+<div class="col-lg-9 col-md-3 col-3">
+    <nav class="tm-navigation tm-header-navigation" style="display: block;">
+        <ul>
+            <li class="current"><a href="#tm-area-heroslider">Home</a></li>
+        </ul>
+    </nav>
+</div>
+
                 </div>
                 <div class="tm-mobilenav"></div>
             </div>
@@ -129,10 +142,10 @@ if(isMobile.iPhone()){
                     <div class="row align-items-center">
                         <div class="col-xl-8 col-lg-7 order-2 order-lg-1">
                             <div class="tm-heroslider-content">
-                                <h1>Welcome to JustPe <br> Referral</h1>
-                                <p>You are Referred By One Of Our Distributor . Please Install App Using Below Link.</p>
+                                <h1>Welcome to JustPe Payments <br> Referral</h1>
+                                <p>You are Referred By One Of Your Friend. Please Install App Using Below Link.</p>
                                 <div class="tm-buttongroup">
-                                    <a href="#" class="tm-button tm-button-lg tm-button-white tm-button-transparent"><i
+                                    <a href="https://play.google.com/store/apps/details?id=com.app.justpe.payments" class="tm-button tm-button-lg tm-button-white tm-button-transparent"><i
                                             class="zmdi zmdi-android"></i><span>Google Play</span></a>
                                    
                                 </div>
