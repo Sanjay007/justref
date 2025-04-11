@@ -56,7 +56,7 @@ function getQueryParam(paramName) {
 
 var token=getQueryParam("refcode");
 console.log(token)
-var playURL=encodeURIComponent("https://play.google.com/store/apps/details?id=com.app.justpe.payments&referrer=https://justref.justpe.in/user?refcode=RULQB074");
+var playURL=encodeURIComponent("https://play.google.com/store/apps/details?id=com.app.justpe.payments&referrer=https://justref.justpe.in/user?refcode="+token);
         console.log(playURL);
 var androidIntentUrl="intent://www.justref.justpe.in/user"+window.location.search+"#Intent;scheme=https;package=com.app.justpe.payments;S.browser_fallback_url="+playURL+";end";
 
