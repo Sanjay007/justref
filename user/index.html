@@ -32,7 +32,38 @@
     <link rel="stylesheet" href="assets/css/custom.css">
     
     <script type="text/javascript">
+function getRefCode() {
+  const urlObj = new URL(window.location.href);
+  return urlObj.searchParams.get("refcode");
+}
+function redirectToPlayStore() {
+  const refcode = getRefCode();
+  if (refcode) {
+    // Create the Play Store URL with the refcode
+    const playStoreUrl = `https://play.google.com/store/apps/details?id=com.app.justpe.payments&referrer=https://justref.justpe.in/user?refcode=${refcode}`;
+    
+    // Redirect to the Play Store
+    window.location.href = playStoreUrl;
+  } else {
+    // Fallback if no refcode is present
+    window.location.href = "https://play.google.com/store/apps/details?id=com.app.justpe.payments";
+    console.error("No refcode found in URL");
+  }
+}
 
+// Add this to your HTML to make the button work
+document.addEventListener("DOMContentLoaded", function() {
+  // Find the button and attach the click event
+  const playStoreButton = document.querySelector(".tm-button.tm-button-lg.tm-button-white.tm-button-transparent");
+  if (playStoreButton) {
+    playStoreButton.addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent default anchor behavior
+      redirectToPlayStore();
+    });
+  }
+});
+
+        
 function getUrlParam(param){
 var parameters=window.location.search.substring(1);
 var sURLVariables=parameters.split('&');
@@ -146,7 +177,7 @@ if(isMobile.iPhone()){
                                 <h1>Welcome to JustPe Payments <br> Referral</h1>
                                 <p>You are Referred By One Of Your Friend. Please Install App Using Below Link.</p>
                                 <div class="tm-buttongroup">
-                                    <a href="https://play.google.com/store/apps/details?id=com.app.justpe.payments&referrer=https://justref.justpe.in/user?refcode="+token class="tm-button tm-button-lg tm-button-white tm-button-transparent"><i
+                                    <a class="tm-button tm-button-lg tm-button-white tm-button-transparent"><i
                                             class="zmdi zmdi-android"></i><span>Google Play</span></a>
                                    
                                 </div>
